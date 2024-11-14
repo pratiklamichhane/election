@@ -38,6 +38,4 @@ Route::middleware(['auth', isAdmin::class])->prefix('admin')->group(function () 
     Route::resource('elections', ElectionController::class);
     Route::resource('partys', PartyController::class);
 
-
-
 });

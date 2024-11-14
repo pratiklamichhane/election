@@ -32,6 +32,7 @@
         <i class="bi bi-people-fill"></i>
         <span class="menu-text">Users</span>
       </a>
+      </li>
       @endif
 
       @if(auth()->user()->role =='admin')
@@ -41,6 +42,7 @@
           <i class="bi bi-box-seam"></i>
           <span class="menu-text">Elections</span>
         </a>
+      </li>
     @endif
 
     @if(auth()->user()->role =='admin')
@@ -50,6 +52,15 @@
         <i class="bi bi-box-seam"></i>
         <span class="menu-text">Partys</span>
       </a>
+    </li>
+
+    <li class="@if(Request::is('users*'))
+    active current-page @endif ">
+      <a href="{{route('partys.index')}}">
+        <i class="bi bi-box-seam"></i>
+        <span class="menu-text">Partys</span>
+      </a>
+    </li>
   @endif
 
 
