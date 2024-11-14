@@ -1,8 +1,12 @@
-<?php
+<!-- <?php
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserContoller;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ElectionController;
+use App\Http\Controllers\PartyController;
+use App\Http\Controllers\ElectionPartiesController;
+
 use App\Http\Middleware\isAdmin;
 
 Route::get('/', function () {
@@ -24,10 +28,17 @@ require __DIR__.'/auth.php';
 
 //ADMIN ROUTES WITH NAME PREFIX AND NAMESPACES
 Route::middleware(['auth', isAdmin::class])->prefix('admin')->group(function () {
-    Route::get('/users', [UserContoller::class, 'index'])->name('users.index');
-    Route::get('/users/{user}', [UserContoller::class, 'show'])->name('users.show');
-    Route::get('/users/{user}/edit', [UserContoller::class, 'edit'])->name('users.edit');
-    Route::post('users/approve/{user}', [UserContoller::class, 'approve'])->name('users.approve');
-    Route::put('/users/{user}', [UserContoller::class, 'update'])->name('users.update');
-    Route::delete('/users/{user}', [UserContoller::class, 'destroy'])->name('users.destroy');
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
+    Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::post('users/approve/{user}', [UserController::class, 'approve'])->name('users.approve');
+    Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
+    Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+
+    Route::resource('elections', ElectionController::class);
+    Route::resource('partys', PartyController::class);
+    Route::resource('election_parties', ElectionPartiesController::class);
+
+
+
 });
