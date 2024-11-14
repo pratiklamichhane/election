@@ -32,9 +32,25 @@
         <i class="bi bi-people-fill"></i>
         <span class="menu-text">Users</span>
       </a>
-    </li>
-    
+      @endif
+
+      @if(auth()->user()->role =='admin')
+      <li class="@if(Request::is('users*'))
+      active current-page @endif ">
+        <a href="{{route('elections.index')}}">
+          <i class="bi bi-box-seam"></i>
+          <span class="menu-text">Elections</span>
+        </a>
     @endif
+
+    @if(auth()->user()->role =='admin')
+    <li class="@if(Request::is('users*'))
+    active current-page @endif ">
+      <a href="{{route('partys.index')}}">
+        <i class="bi bi-box-seam"></i>
+        <span class="menu-text">Partys</span>
+      </a>
+  @endif
 
 
 
